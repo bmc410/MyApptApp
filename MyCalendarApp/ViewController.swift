@@ -133,8 +133,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let day: Int! = self.gregorian.component(.day, from: date)
-        return day % 5 == 0 ? day/5 : 0;
+        //let day: Int! = self.gregorian.component(.day, from: date)
+        return 0//day % 5 == 0 ? day/5 : 0;
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
@@ -148,12 +148,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.openSlots.removeAll()
         
+        
         for twelve in array {
             dateFormatter.dateFormat = "H:mm"
+            let k: Int = Int(arc4random_uniform(2))
             if let date12 = dateFormatter.date(from: twelve) {
                 dateFormatter.dateFormat = "h:mm a"
                 let date22 = dateFormatter.string(from: date12)
-                self.openSlots.append(date22)
+                if k == 1{
+                    self.openSlots.append(date22)
+                }
             } else {
                 // oops, error while converting the string
             }
