@@ -41,7 +41,7 @@ struct Time {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
         
-        let dateComponent = NSDateComponents()
+        var dateComponent = DateComponents()
         return timeIntervals.map { timeInterval in
             dateComponent.second = Int(timeInterval)
             return dateComponentFormatter.string(from: dateComponent as DateComponents)!
@@ -57,11 +57,32 @@ struct Time {
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FSCalendarDataSource, FSCalendarDelegate {
 
     var openSlots: [String] = []
+    var selectedTime: String = ""
+    var selectedDate: Date?
     
     @IBOutlet weak var ApptTable: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // get a reference to the second view controller
+        let secondViewController = segue.destination as! ScheduleApptView
+        secondViewController.selectedTime = selectedTime
+        secondViewController.selectedDate = selectedDate
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+       
+        let indexPath = ApptTable.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: indexPath!) as! MyCustomCell
+        selectedTime = currentCell.ApptTimeLabel.text!
+        
+        self.performSegue(withIdentifier: "ShowApptScheduler", sender: self)
+        
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.openSlots.count)
@@ -76,12 +97,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    private let formatter: DateFormatter = {
+    fileprivate let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
         return formatter
     }()
-    private let gregorian: NSCalendar! = NSCalendar(calendarIdentifier:NSCalendar.Identifier.gregorian)
+    fileprivate let gregorian: Calendar! = Calendar(identifier:Calendar.Identifier.gregorian)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +117,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.calendar.scopeGesture.isEnabled = true
         self.ApptTable.dataSource = self
         self.ApptTable.delegate = self
+        
+        FillSlotsArray()
+        selectedDate = Date()
+
         
     }
     
@@ -116,11 +141,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         NSLog("change page to \(self.formatter.string(from: calendar.currentPage))")
     }
     
-    func generateTimeSlots(){
-    
-    }
-    
-    func calendar(_ calendar: FSCalendar, didSelect date: Date) {
+    func FillSlotsArray(){
         let time = Time(startHour: 8, intervalMinutes: 30, endHour: 18)
         let array = time.timeRepresentations
         let dateFormatter = DateFormatter()
@@ -139,7 +160,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
         ApptTable.reloadData()
-        //print(time.timeRepresentations)
+    }
+    
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date) {
+        
+        selectedDate = date
+        FillSlotsArray()
+       
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
