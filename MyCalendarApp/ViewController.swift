@@ -8,6 +8,7 @@
 
 import UIKit
 import FSCalendar
+import Alamofire
 
 class MyCustomCell: UITableViewCell {
     
@@ -118,8 +119,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.ApptTable.dataSource = self
         self.ApptTable.delegate = self
         
-        FillSlotsArray()
-        selectedDate = Date()
+        
+        getAppointments()
+        //FillSlotsArray()
+        //selectedDate = Date()
 
         
     }
@@ -169,10 +172,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date) {
         
-        selectedDate = date
-        FillSlotsArray()
+        //selectedDate = date
+        //FillSlotsArray()
        
     }
+    
+    func getAppointments(){
+        let URL = "http://appointmentslotsapi.azurewebsites.net/api/Appointment/GetAppointments"
+
+        Alamofire.request(URL).responseArray { (response: DataResponse<[Appt]>) in
+            
+            let appts = response.result.value
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            if let appts = appts {
+                for appt in appts {
+                    print(dateFormatter.date(from: appt.StartTime!)!)
+                    //print(appt.StartTime!)
+                    //print(appt.EndTime!)
+                }
+            }
+        }
+    }
+    
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeightConstraint.constant = bounds.height

@@ -1,15 +1,25 @@
 PODS:
+  - Alamofire (4.0.0)
+  - AlamofireObjectMapper (4.0.0):
+    - Alamofire (~> 4.0)
+    - ObjectMapper (~> 2.0)
   - FSCalendar (2.3.3)
+  - ObjectMapper (2.0.0)
   - SkyFloatingLabelTextField (1.2.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - AlamofireObjectMapper (~> 4.0)
   - FSCalendar
   - SkyFloatingLabelTextField (~> 1.0)
 
 SPEC CHECKSUMS:
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
   FSCalendar: 430254999f6285bb5ccf0bb0b124b1953ad56768
+  ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
   SkyFloatingLabelTextField: 3f6610aded18e778df5cfab3b9e12a11b3e014e9
 
-PODFILE CHECKSUM: 702ad032db3beaddc362836ebb29a811b8a4bde4
+PODFILE CHECKSUM: 65e19b8255e39bed224b5c7f028bca50bafb80d6
 
 COCOAPODS: 1.0.1

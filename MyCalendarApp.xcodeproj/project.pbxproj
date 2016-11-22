@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8562A2A71DE4E500006E03CF /* ApptResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8562A2A61DE4E500006E03CF /* ApptResponse.swift */; };
 		858835BF1DDF55B6002032F7 /* ScheduleApptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858835BE1DDF55B6002032F7 /* ScheduleApptView.swift */; };
 		859E4FBE1DDDF05900B1A16B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4FBD1DDDF05900B1A16B /* AppDelegate.swift */; };
 		859E4FC01DDDF05900B1A16B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4FBF1DDDF05900B1A16B /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		28A90D626F45406F1B7DC734 /* Pods_MyCalendarApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCalendarApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A294ED63288397DFF03B687 /* Pods-MyCalendarApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCalendarApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyCalendarApp/Pods-MyCalendarApp.release.xcconfig"; sourceTree = "<group>"; };
+		8562A2A61DE4E500006E03CF /* ApptResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApptResponse.swift; sourceTree = "<group>"; };
 		858835BE1DDF55B6002032F7 /* ScheduleApptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleApptView.swift; sourceTree = "<group>"; };
 		859E4FBA1DDDF05900B1A16B /* MyCalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859E4FBD1DDDF05900B1A16B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				859E4FC61DDDF05900B1A16B /* LaunchScreen.storyboard */,
 				859E4FC91DDDF05900B1A16B /* Info.plist */,
 				858835BE1DDF55B6002032F7 /* ScheduleApptView.swift */,
+				8562A2A61DE4E500006E03CF /* ApptResponse.swift */,
 			);
 			path = MyCalendarApp;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				858835BF1DDF55B6002032F7 /* ScheduleApptView.swift in Sources */,
+				8562A2A71DE4E500006E03CF /* ApptResponse.swift in Sources */,
 				859E4FC01DDDF05900B1A16B /* ViewController.swift in Sources */,
 				859E4FBE1DDDF05900B1A16B /* AppDelegate.swift in Sources */,
 			);

@@ -8,5 +8,6 @@ target 'MyCalendarApp' do
     # Pods for MyCalendarApp
      pod 'FSCalendar'
      pod 'SkyFloatingLabelTextField', '~> 1.0'
-
+     pod 'Alamofire', '~> 4.0'
+     pod 'AlamofireObjectMapper', '~> 4.0'
 end
